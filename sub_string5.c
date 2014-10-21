@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : string_substr2.c
+ Name        : sub_string5.c
  Author      : 
  Version     :
  Copyright   : Your copyright notice
@@ -10,25 +10,26 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-char* substr(char *s, char from, char to);
+char* find_ch(char *s, char key);
+char* substr(char *s, char from, int len);
 
 int main() {
 	char in[128];
 	char *out = NULL;
-	char from, to;
+	char from;
+	int len;
 
 	printf("Enter: ");
-	scanf("%[^\n]s", in);
+	gets(in);
 
 	printf("From: ");
-	scanf(" %c", &from);
+	scanf("%c", &from);
 
-	printf("To: ");
-	scanf(" %c", &to);
+	printf("Len: ");
+	scanf("%d", &len);
 
 	//call substr appropriately
-	out = substr(in, from, to);
+	out = substr(in, from, len);
 	if (out != NULL)
 		printf("= %s\n", out);
 	else
@@ -36,21 +37,26 @@ int main() {
 
 	return 0;
 }
-
-char* substr(char *s, char from, char to) {
-	while (*s != from) {
+char* find_ch(char *s, char key) {
+	while (*s != '\0') {
+		if (key == *s)
+			return s;
 		s++;
-		if (*s == '\0') {
-			return NULL;
-		}
+	}
+	return NULL;
+}
+char* substr(char *s, char from, int len) {
+	s = find_ch(s, from);
+	if (s == NULL) {
+		return s;
 	}
 	int inx = 0;
-	while (*(s + inx) != to) {
+	while (inx < len) {
 		inx++;
 		if (*(s + inx) == '\0') {
 			return NULL;
 		}
 	}
-	*(s + inx + 1) = '\0';
+	*(s + inx) = '\0';
 	return s;
 }

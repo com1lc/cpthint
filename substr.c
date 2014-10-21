@@ -37,13 +37,21 @@ int main() {
 	return 0;
 }
 char* substr(char *s, int from, int len) {
-	if (len < from)
-		return NULL;
-
-	while (from > 0) {
+	int inx = 0;
+	while (inx < from) {
 		s++;
-		from--;
+		if (*s == '\0') {
+			return NULL;
+		}
+		inx++;
 	}
-	*(s + len) = '\0';
+	inx = 0;
+	while (inx < len - from + 1) {
+		if (*(s + inx) == '\0') {
+			return NULL;
+		}
+		inx++;
+	}
+	*(s + inx) = '\0';
 	return s;
 }

@@ -38,14 +38,21 @@ int main() {
 	return 0;
 }
 
-char* substr(char *s, char from, int len) {
-	while (*s != '\0') {
-		if (from == *s)
-			break;
-		else if (*(s + len) == '\0')
-			return NULL;
+char* substr(char *s, char from, int to) {
+	while (*s != from) {
 		s++;
+		if (*s == '\0') {
+			return NULL;
+		}
 	}
-	*(s + len) = '\0';
+	int inx = 0;
+	while (inx < to) {
+		inx++;
+		if (*(s + inx) == '\0') {
+			return NULL;
+		}
+	}
+	*(s + inx) = '\0';
 	return s;
 }
+
