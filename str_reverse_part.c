@@ -45,5 +45,8 @@ int is_reverse_part(char *s1, char *s2) {
 		}
 		--e1;
 	}
+	if (*e1 != *s2 && *s2 != '\0') {
+		return 0;
+	}
 	return 1;
 }
