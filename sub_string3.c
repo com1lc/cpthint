@@ -48,8 +48,9 @@ char* substr(char *s, char from, int to) {
 	int inx = 0;
 	while (inx < to) {
 		inx++;
-		if (*(s + inx) == '\0') {
-			return NULL;
+		if (*(s + inx) == '\0'){
+			//return NULL;
+                      break;
 		}
 	}
 	*(s + inx) = '\0';
